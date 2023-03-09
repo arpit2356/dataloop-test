@@ -1,3 +1,7 @@
+data "google_service_account" "terraform__service_account" {
+  account_id = "105675266855924642959"
+}
+
 /******************************************
   Create Container Cluster
  *****************************************/
@@ -79,7 +83,12 @@ resource "google_container_node_pool" "node-pools" {
     disk_size_gb    = 100
     disk_type       = "pd-standard"
 
-    preemptible = false
+    preemptible     = false
+    service_account = data.google_service_account.terraform__service_account.email
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
   }
 
   lifecycle {
