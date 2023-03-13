@@ -8,7 +8,15 @@ To install Terraform, follow the instructions below:
 2. Extract the downloaded package into a directory of your choice.
 3. Add the directory to your system's `PATH` environment variable. This will allow you to run the `terraform` command from any directory in your terminal.
 4. Also from package managers like Homebrew.
+---
+## Prerequisites
 
+Service account key is required to authenticate Terraform with the GCP account in use. To do that:
+* Create a new key from [terraform service account keys page](https://console.cloud.google.com/iam-admin/serviceaccounts/details/105675266855924642959/keys?project=dataloop-candidate-environment)
+* Keep it safe in local storage
+* Refer the location of the json key in environment variable **GOOGLE_APPLICATION_CREDENTIALS** either in current shell session or in **.bashrc**
+---
+## Deploy
 
 To deploy a GKE cluster using Terraform, navigate to environment specific directory (uat | production ) and run:
 * `terraform init`
